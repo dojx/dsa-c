@@ -1,0 +1,9 @@
+# Executables
+main
+linkedlist
+queuelist
+
+# Object Files
+main.o
+linked_list.o
+queue_list.o
