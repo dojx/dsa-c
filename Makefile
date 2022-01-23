@@ -1,7 +1,28 @@
-CC=gcc
+CC      := gcc
+BIN     := ./bin
+INCLUDE := ./include
+SRC     := ./src
+OBJ     := ./obj
+SRCS    := $(wildcard $(SRC)/*.c)
+OBJS    := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+EXE     := $(BIN)/output.exe
+CFLAGS  := -I$(INCLUDE)
 
-llmake: main.c linked_list.c queue_list.c
-	$(CC) -o main main.c linked_list.c queue_list.c -I.
+.PHONY: all run clean
 
-# qlmake: queue_list.o
-# 	$(CC) -o queuelist queue_list.o
+all: $(EXE)
+
+$(EXE): $(OBJS) | $(BIN)
+	$(CC) $(CFLAGS) -o $@ $^
+
+$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BIN) $(OBJ):
+	mkdir $@
+
+run: $(EXE)
+	$<
+
+clean:
+	rm $(OBJ)/*.o
