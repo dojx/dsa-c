@@ -4,7 +4,9 @@
 
 Queue* create_queue(int x) {
     Queue* q = (Queue*) malloc(sizeof(Queue));
-    q->head = create_node(x);
+    Node *new_node = create_node(x);
+    new_node->next = NULL;
+    q->head = new_node;
     q->tail = q->head;
     q->size = 1;
     return q;

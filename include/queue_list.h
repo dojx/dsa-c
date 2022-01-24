@@ -5,8 +5,7 @@
 
 typedef struct Queue {
     int size;
-    Node* head;
-    Node* tail;
+    Node *head, *tail;
 } Queue;
 
 Queue* create_queue(int x);
