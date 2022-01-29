@@ -1,15 +1,24 @@
 #include <stdio.h>
-// #include "linked_list.h"
-// #include "queue_list.h"
-#include "stack_list.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
 int main() {
-    Stack *s = create_stack(0);
-    for(int i = 1; i <= 5; i++) {
-        push_s(s, i);
+    Heap *heap = create_heap(8, false);
+
+    insert(heap, 1);
+    insert(heap, 7);
+    insert(heap, 6);
+    insert(heap, 5);
+    insert(heap, 9);
+    insert(heap, 4);
+
+    print_heap(heap);
+
+    while(heap->size) {
+        printf("(%d)", pop_root(heap));
     }
-    print_stack(s);
-    printf("%d\n", pop_s(s));
-    delete_stack(&s);
+
+    delete_heap(&heap);
+
     return 0;
 }
